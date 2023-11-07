@@ -13,10 +13,11 @@ Example 1: two-level indentation
 			 -indented paragraph, level 1, element 1
 			 -indented paragraph, level 1, element 2
 			  -indented paragraph, level 2, element 1
-Example 2: two paragraphs within an element
+Example 2: additional paragraphs within an element
 			base text paragraph
 			 -indented paragraph, level 1, element 1
 			second paragraph of level 1, element 1
+			third paragraph of level 1, element 1
 			 -indented paragraph, level 1, element 2
 Example 3: ending indentation
 			base text paragraph
