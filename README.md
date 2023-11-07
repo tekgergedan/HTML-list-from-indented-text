@@ -1,4 +1,4 @@
-# HTML-list-from-indented-text-VBScript-
+# HTML-list-from-indented-text
 
 Converts a string containing indents - by space and linefeed characters - to an HTML entity erected by ul lists.
 Type/edit a text and call the function with your text being transferred as a string.
