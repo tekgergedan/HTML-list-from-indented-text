@@ -1,5 +1,5 @@
 Function ConvertToULLIList(ByVal vP1 As String) As String
-	Dim vTmp1, vB1 As Boolean, vL1 As Long, vL2 As Long, vL3 As Long, vL4 As Long, vL5 As Long, vT1 As String
+	Dim vTmp1, vB1 As Boolean, vB2 As Boolean, vL1 As Long, vL2 As Long, vL3 As Long, vL4 As Long, vT1 As String
 	vTmp1 = Split(vP1, "<br>")
 	vL1 = 0
 	vB1 = False
@@ -8,7 +8,7 @@ Function ConvertToULLIList(ByVal vP1 As String) As String
 		If vT1 <> "" Then
 		If Trim(vT1) <> "" Then
 			vL3 = 0: While Trim(Left(vT1, vL3 + 1)) = "": vL3 = vL3 + 1: Wend
-			vL4 = 0: While Trim(Right(vT1, vL4 + 1)) = "": vL4 = vL4 + 1: Wend
+			If Right(vT1, 1) = " " Then vB2 = True Else vB2 = False
 			vT1 = Trim(vT1)
 			If Left(vT1, 1) = "-" Then vT1 = Mid(vT1, 2)
 			vTmp1(vL2) = Trim(vT1)
@@ -16,7 +16,7 @@ Function ConvertToULLIList(ByVal vP1 As String) As String
 				vTmp1(vL2) = "<br>" & vTmp1(vL2)
 			Else
 				If vB1 Then
-					For vL5 = 1 To vL1: vTmp1(vL2 - 1) = vTmp1(vL2 - 1) & "</li></ul>": Next
+					For vL4 = 1 To vL1: vTmp1(vL2 - 1) = vTmp1(vL2 - 1) & "</li></ul>": Next
 					vL1 = 0
 				End If
 				If vL3 > 0 Then
@@ -24,15 +24,16 @@ Function ConvertToULLIList(ByVal vP1 As String) As String
 						vTmp1(vL2 - 1) = vTmp1(vL2 - 1) & "</li>"
 						vTmp1(vL2) = "<li>" & vTmp1(vL2)
 					ElseIf vL3 < vL1 Then
-						For vL5 = vL3 To vL1 - 1: vTmp1(vL2 - 1) = vTmp1(vL2 - 1) & "</li></ul>": Next
+						For vL4 = vL3 To vL1 - 1: vTmp1(vL2 - 1) = vTmp1(vL2 - 1) & "</li></ul>": Next
+						vTmp1(vL2) = "<li>" & vTmp1(vL2)
 						vL1 = vL3
 					Else
-						For vL5 = vL1 To vL3 - 1: vTmp1(vL2) = "<ul><li>" & vTmp1(vL2): Next
+						For vL4 = vL1 To vL3 - 1: vTmp1(vL2) = "<ul><li>" & vTmp1(vL2): Next
 						vL1 = vL3
 					End If
 				End If
 			End If
-			If vL4 > 0 Then vB1 = True Else vB1 = False
+			vB1 = vB2
 		End If
 		End If
 	Next
